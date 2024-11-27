@@ -2,83 +2,93 @@
 
 # Role-Based Access Control (RBAC) System
 
-This project implements a **Role-Based Access Control (RBAC)** system using Node.js, Express, and JWT for authentication and authorization. It includes user registration, login, role-based authorization, and token-based logout.
+This project implements a **Role-Based Access Control (RBAC)** system using **Node.js**, **Express**, and **JWT** for authentication and authorization. It includes user registration, login, role-based authorization, and token-based logout.
 
 ---
 
-## Features
+## 🚀 Live Application
 
-1. **User Authentication**:
+The **Role-Based Access Control (RBAC) System** is live and accessible at:
+
+**[https://role-based-access-zeta.vercel.app](https://role-based-access-zeta.vercel.app)**
+
+You can test the authentication and protected routes directly from this link.
+
+---
+
+## 📋 Features
+
+### 1. **User Authentication**
    - User registration, login, and logout.
    - JWT-based authentication with token expiry.
 
-2. **Role-Based Authorization**:
+### 2. **Role-Based Authorization**
    - Roles: `admin`, `user`, `moderator`.
    - Access to protected routes based on roles.
 
-3. **Protected Routes**:
+### 3. **Protected Routes**
    - Accessible only with valid tokens.
    - Role-specific access control.
 
 ---
 
-## Setup and Installation
+## 🛠️ Setup and Installation
 
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:shebin-k-s/role-based-access.git
-   cd role-based-access
-   ```
+### 1. Clone the repository:
+```bash
+git clone git@github.com:shebin-k-s/role-based-access.git
+cd role-based-access
+```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+### 2. Install dependencies:
+```bash
+npm install
+```
 
-3. Set up environment variables:
-   Create a `.env` file in the root directory and include the following:
-   ```env
-   PORT=port_number
-   MONGODB_URL=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret_key
-   ```
+### 3. Set up environment variables:
+Create a `.env` file in the root directory and include the following:
+```env
+PORT=port_number
+MONGODB_URL=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
 
-4. Start the server:
-   ```bash
-   npm start
-   ```
+### 4. Start the server:
+```bash
+npm start
+```
 
 ---
 
-## Routes
+## 🗺️ Routes
 
 ### Authentication Routes (`/auth`)
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `api/v1/auth/register`    | Register a new user            |
-| POST   | `api/v1/auth/login`       | Login and get JWT token        |
-| POST   | `api/v1/auth/logout`      | Logout and invalidate the token|
+| **Method** | **Endpoint**           | **Description**                |
+|------------|------------------------|--------------------------------|
+| `POST`     | `api/v1/auth/register` | Register a new user            |
+| `POST`     | `api/v1/auth/login`    | Login and get JWT token        |
+| `POST`     | `api/v1/auth/logout`   | Logout and invalidate the token|
 
 ### Protected Routes (`/protected`)
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/v1/admin`           | Access admin-protected resources |
-| GET    | `/api/v1/moderator`       | Access moderator-protected resources |
-| GET    | `/api/v1/user`            | Access user-protected resources |
+| **Method** | **Endpoint**           | **Description**                |
+|------------|------------------------|--------------------------------|
+| `GET`      | `/api/v1/admin`        | Access admin-protected resources |
+| `GET`      | `/api/v1/moderator`    | Access moderator-protected resources |
+| `GET`      | `/api/v1/user`         | Access user-protected resources |
 
 ---
 
-## Middleware
+## 🔒 Middleware
 
-1. **verifyToken**:
-   - Validates JWT tokens sent in the `authorization` header.
+### 1. **verifyToken**
+   - Validates JWT tokens sent in the `Authorization` header.
 
-2. **authorizeRole**:
+### 2. **authorizeRole**
    - Restricts access based on user roles.
 
 ---
 
-## Models
+## 🗃️ Models
 
 - **User Model**:
   - Fields: `username`, `password`, `role`.
@@ -86,9 +96,9 @@ This project implements a **Role-Based Access Control (RBAC)** system using Node
 
 ---
 
-## Example Usage
+## 📝 Example Usage
 
-### Register a User
+### 1. Register a User
 **POST** `api/v1/auth/register`
 ```json
 {
@@ -98,7 +108,7 @@ This project implements a **Role-Based Access Control (RBAC)** system using Node
 }
 ```
 
-### Login
+### 2. Login
 **POST** `api/v1/auth/login`
 ```json
 {
@@ -106,14 +116,15 @@ This project implements a **Role-Based Access Control (RBAC)** system using Node
   "password": "password123"
 }
 ```
-### Logout
+
+### 3. Logout
 **POST** `api/v1/auth/logout`
 - Include the following header:
   ```http
   authorization: <your_token>
   ```
 
-### Access Protected Route
+### 4. Access Protected Route
 **GET** `/api/v1/admin`
 - Include the following header:
   ```http
@@ -134,7 +145,7 @@ This project implements a **Role-Based Access Control (RBAC)** system using Node
 
 ---
 
-## Dependencies
+## 📦 Dependencies
 
 - **bcrypt**: For password hashing.
 - **cors**: To enable Cross-Origin Resource Sharing.
