@@ -1,10 +1,10 @@
 import express from 'express'
-import { adminData } from '../../controllers/adminController.js'
+import { moderatorData } from '../../controllers/moderatorController.js'
 
 
 const router = express.Router()
 
 router.route("/")
-    .get(adminData)
+    .get(moderatorData)
 
 export default router

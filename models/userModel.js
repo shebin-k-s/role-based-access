@@ -1,8 +1,7 @@
 import mongoose, { mongo } from "mongoose"
 
 
-const validRole = ['admin', 'user', 'moderator']
-export const validateRole = (role) => validRole.includes(role)
+export const validRoles = ['admin', 'user', 'moderator']
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -16,7 +15,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['admin', 'user', 'moderator'],
+        enum: validRoles,
         default: 'user',
     }
 })
