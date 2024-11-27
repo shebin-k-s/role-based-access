@@ -2,6 +2,7 @@ import User, { validRoles } from "../models/userModel.js";
 import bcrypt from 'bcrypt'
 import Jwt from 'jsonwebtoken'
 
+export const invalidatedTokens = new Set();
 
 export const validateRole = (role) => validRoles.includes(role)
 
@@ -73,17 +74,7 @@ export const logout = async (req, res) => {
         return res.status(400).json({ message: 'No token provided' });
     }
 
-    try {
-        const decoded = Jwt.decode(token);
+    invalidatedTokens.add(token);
+    return res.status(200).json({ message: 'Logout successful' });
 
-        if (!decoded) {
-            return res.status(400).json({ message: 'Invalid token' });
-        }
-
-        const timeToExpire = decoded.exp - Math.floor(Date.now() / 1000);
-
-        return res.status(200).json({ message: 'Logout successful' });
-    } catch (error) {
-        return res.status(500).json({ message: 'Internal server error' });
-    }
 };
