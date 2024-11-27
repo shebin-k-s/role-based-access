@@ -44,6 +44,7 @@ export const registerUser = async (req, res) => {
 }
 
 export const loginUser = async (req, res) => {
+
     const { username, password } = req.body
 
     try {
@@ -58,7 +59,7 @@ export const loginUser = async (req, res) => {
             return res.status(404).json({ message: "Password incorrect" })
         }
 
-        const token = Jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_KEY, { expiresIn: '1d' })
+        const token = Jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1d' })
 
         return res.status(200).json({ message: "Login successfull", token })
 
